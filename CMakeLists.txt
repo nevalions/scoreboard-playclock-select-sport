@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
-
-include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(sport_selector)
+idf_component_register(
+    SRCS "main/sport_selector.c"
+    INCLUDE_DIRS "include"
+)
