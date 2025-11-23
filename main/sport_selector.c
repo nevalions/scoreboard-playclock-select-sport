@@ -11,5 +11,7 @@ const sport_config_t sport_configs[SPORT_COUNT] = {
     {SPORT_BASEBALL_14_SEC, 14, "Baseball", "14 seconds", PLAYCLOCK_BEHAVIOR_RESET},
     {SPORT_BASEBALL_19_SEC, 19, "Baseball", "19 seconds", PLAYCLOCK_BEHAVIOR_RESET},
     {SPORT_VOLLEYBALL_8_SEC, 8, "Volleyball", "8 seconds", PLAYCLOCK_BEHAVIOR_RESET},
-    {SPORT_LACROSSE_30_SEC, 30, "Lacrosse", "30 seconds", PLAYCLOCK_BEHAVIOR_RESET}
+    {SPORT_LACROSSE_30_SEC, 30, "Lacrosse", "30 seconds", PLAYCLOCK_BEHAVIOR_RESET},
+    {SPORT_CUSTOM_1, 0, "Custom", "Configurable 1", PLAYCLOCK_BEHAVIOR_RESET},
+    {SPORT_CUSTOM_2, 0, "Custom", "Configurable 2", PLAYCLOCK_BEHAVIOR_RESET}
 };

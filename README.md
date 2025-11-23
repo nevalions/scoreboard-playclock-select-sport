@@ -10,6 +10,7 @@ Contains play clock configurations for sports that use play clocks (not game clo
 - **Baseball**: 15 seconds, 20 seconds, 14 seconds, 19 seconds - Reset behavior
 - **Volleyball**: 8 seconds - Reset behavior
 - **Lacrosse**: 30 seconds - Reset behavior
+- **Custom**: Configurable 1, Configurable 2 - Reset behavior (0 = configurable)
 
 ## Removed Sports
 

@@ -16,6 +16,8 @@ typedef enum {
     SPORT_BASEBALL_19_SEC,
     SPORT_VOLLEYBALL_8_SEC,
     SPORT_LACROSSE_30_SEC,
+    SPORT_CUSTOM_1,
+    SPORT_CUSTOM_2,
     SPORT_COUNT
 } sport_type_t;
 
