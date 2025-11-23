@@ -16,10 +16,14 @@ typedef enum {
     SPORT_BASEBALL_19_SEC,
     SPORT_VOLLEYBALL_8_SEC,
     SPORT_LACROSSE_30_SEC,
-    SPORT_CUSTOM_RESET,
-    SPORT_CUSTOM_PAUSE,
-    SPORT_CUSTOM_MIXED,
-    SPORT_COUNT
+    SPORT_CUSTOM_ONE_RESET,
+    SPORT_CUSTOM_ONE_PAUSE,
+    SPORT_CUSTOM_ONE_MIXED,
+    SPORT_CUSTOM_TWO_RESET,
+    SPORT_CUSTOM_TWO_PAUSE,
+    SPORT_CUSTOM_TWO_MIXED,
+    SPORT_COUNT_ONE,
+    SPORT_COUNT_TWO
 } sport_type_t;
 
 typedef enum {
@@ -36,6 +40,10 @@ typedef struct {
     playclock_behavior_t behavior;
 } sport_config_t;
 
-extern const sport_config_t sport_configs[SPORT_COUNT];
+sport_config_t get_sport_config(sport_type_t sport);
+sport_config_t get_custom_config(uint8_t count, playclock_behavior_t behavior);
+sport_config_t get_basketball_config(uint8_t seconds);
+sport_config_t get_football_config(uint8_t seconds);
+sport_config_t get_baseball_config(uint8_t seconds);
 
 #endif
