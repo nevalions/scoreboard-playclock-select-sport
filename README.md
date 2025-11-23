@@ -1,22 +1,32 @@
 # Sport Selector Module
 
-Contains play clock configurations for sports that use play clocks (not game clocks).
+Configuration library for play clock timing in sports timing systems.
+
+## Overview
+
+Provides sport-specific play clock configurations including timing values and reset behaviors. This is a pure data module - no timing logic, just configuration lookup.
 
 ## Supported Sports
 
-- **Play Clock**: Null/Empty (255) - Reset behavior
-- **Basketball**: 24 seconds, 30 seconds - Mixed behavior (reset + pause)
-- **Football**: 40 seconds, 25 seconds - Reset behavior
-- **Baseball**: 15 seconds, 20 seconds, 14 seconds, 19 seconds - Reset behavior
-- **Volleyball**: 8 seconds - Reset behavior
-- **Lacrosse**: 30 seconds - Reset behavior
-- **Custom**: Reset behavior, Pause behavior, Mixed behavior (0 = configurable)
+| Sport | Duration(s) | Behavior |
+|-------|-------------|----------|
+| **Basketball** | 24s, 30s | Mixed (reset + pause) |
+| **Football** | 40s, 25s | Reset |
+| **Baseball** | 14s, 15s, 19s, 20s | Reset |
+| **Volleyball** | 8s | Reset |
+| **Lacrosse** | 30s | Reset |
+| **Custom** | Configurable | Reset/Pause/Mixed |
 
-## Removed Sports
+## API
 
-Sports with only game clocks have been excluded:
-- Soccer, Hockey, Rugby, Tennis, Golf, Swimming, Track & Field, etc.
+```c
+sport_config_t get_sport_config(sport_type_t sport);
+sport_config_t get_custom_config(uint8_t count, playclock_behavior_t behavior);
+sport_config_t get_basketball_config(uint8_t seconds);
+sport_config_t get_football_config(uint8_t seconds);
+sport_config_t get_baseball_config(uint8_t seconds);
+```
 
-## Usage
+## Integration
 
-Controller module will select from these configurations. No logic in this module.
+Controller module queries this library for sport configurations. No active timing logic contained here.
