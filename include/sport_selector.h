@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "colors.h"
 
 typedef enum {
     SPORT_PLAYCLOCK_NULL = 0,
@@ -38,6 +39,7 @@ typedef struct {
     const char* name;
     const char* variation;
     playclock_behavior_t behavior;
+    color_scheme_t color_scheme;
 } sport_config_t;
 
 sport_config_t get_sport_config(sport_type_t sport);
@@ -45,5 +47,6 @@ sport_config_t get_custom_config(uint8_t count, playclock_behavior_t behavior);
 sport_config_t get_basketball_config(uint8_t seconds);
 sport_config_t get_football_config(uint8_t seconds);
 sport_config_t get_baseball_config(uint8_t seconds);
+color_scheme_t get_sport_color_scheme(sport_type_t sport);
 
 #endif

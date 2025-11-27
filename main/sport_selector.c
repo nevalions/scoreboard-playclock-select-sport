@@ -1,4 +1,5 @@
 #include "../include/sport_selector.h"
+#include "../include/colors.h"
 
 // Generate basketball configuration for 24 or 30 second shot clocks
 sport_config_t get_basketball_config(uint8_t seconds) {
@@ -8,6 +9,7 @@ sport_config_t get_basketball_config(uint8_t seconds) {
     config.name = "Basketball";
     config.variation = (seconds == 24) ? "24 seconds" : "30 seconds";
     config.behavior = PLAYCLOCK_BEHAVIOR_MIXED;
+    config.color_scheme = COLOR_SCHEME_BASKETBALL;
     return config;
 }
 
@@ -19,6 +21,7 @@ sport_config_t get_football_config(uint8_t seconds) {
     config.name = "Football";
     config.variation = (seconds == 40) ? "40 seconds" : "25 seconds";
     config.behavior = PLAYCLOCK_BEHAVIOR_RESET;
+    config.color_scheme = COLOR_SCHEME_FOOTBALL;
     return config;
 }
 
@@ -40,17 +43,47 @@ sport_config_t get_baseball_config(uint8_t seconds) {
             config.name = "Baseball";
             config.variation = baseball_map[i].var;
             config.behavior = PLAYCLOCK_BEHAVIOR_RESET;
+            config.color_scheme = COLOR_SCHEME_BASEBALL;
             break;  // Exit loop once match is found
         }
     }
+    
     return config;
+}
+
+// Get color scheme for a given sport type
+color_scheme_t get_sport_color_scheme(sport_type_t sport) {
+    switch (sport) {
+        case SPORT_BASKETBALL_24_SEC:
+        case SPORT_BASKETBALL_30_SEC:
+            return COLOR_SCHEME_BASKETBALL;
+            
+        case SPORT_FOOTBALL_40_SEC:
+        case SPORT_FOOTBALL_25_SEC:
+            return COLOR_SCHEME_FOOTBALL;
+            
+        case SPORT_BASEBALL_15_SEC:
+        case SPORT_BASEBALL_20_SEC:
+        case SPORT_BASEBALL_14_SEC:
+        case SPORT_BASEBALL_19_SEC:
+            return COLOR_SCHEME_BASEBALL;
+            
+        case SPORT_VOLLEYBALL_8_SEC:
+            return COLOR_SCHEME_VOLLEYBALL;
+            
+        case SPORT_LACROSSE_30_SEC:
+            return COLOR_SCHEME_LACROSSE;
+            
+        default:
+            return COLOR_SCHEME_CUSTOM;
+    }
 }
 
 // Main interface function that returns sport configuration based on sport type
 sport_config_t get_sport_config(sport_type_t sport) {
     switch (sport) {
         case SPORT_PLAYCLOCK_NULL:
-            return (sport_config_t){SPORT_PLAYCLOCK_NULL, 255, "Play Clock", "Null/Empty", PLAYCLOCK_BEHAVIOR_RESET};
+            return (sport_config_t){SPORT_PLAYCLOCK_NULL, 255, "Play Clock", "Null/Empty", PLAYCLOCK_BEHAVIOR_RESET, COLOR_SCHEME_CUSTOM};
         case SPORT_BASKETBALL_24_SEC:
             return get_basketball_config(24);
         case SPORT_BASKETBALL_30_SEC:
@@ -68,11 +101,11 @@ sport_config_t get_sport_config(sport_type_t sport) {
         case SPORT_BASEBALL_19_SEC:
             return get_baseball_config(19);
         case SPORT_VOLLEYBALL_8_SEC:
-            return (sport_config_t){SPORT_VOLLEYBALL_8_SEC, 8, "Volleyball", "8 seconds", PLAYCLOCK_BEHAVIOR_RESET};
+            return (sport_config_t){SPORT_VOLLEYBALL_8_SEC, 8, "Volleyball", "8 seconds", PLAYCLOCK_BEHAVIOR_RESET, COLOR_SCHEME_VOLLEYBALL};
         case SPORT_LACROSSE_30_SEC:
-            return (sport_config_t){SPORT_LACROSSE_30_SEC, 30, "Lacrosse", "30 seconds", PLAYCLOCK_BEHAVIOR_RESET};
+            return (sport_config_t){SPORT_LACROSSE_30_SEC, 30, "Lacrosse", "30 seconds", PLAYCLOCK_BEHAVIOR_RESET, COLOR_SCHEME_LACROSSE};
         default:
-            return (sport_config_t){SPORT_PLAYCLOCK_NULL, 255, "Play Clock", "Null/Empty", PLAYCLOCK_BEHAVIOR_RESET};
+            return (sport_config_t){SPORT_PLAYCLOCK_NULL, 255, "Play Clock", "Null/Empty", PLAYCLOCK_BEHAVIOR_RESET, COLOR_SCHEME_CUSTOM};
     }
 }
 
@@ -93,6 +126,7 @@ sport_config_t get_custom_config(uint8_t count, playclock_behavior_t behavior) {
         config.name = "Custom Two";
         config.variation = behavior_names[behavior];
     }
+    config.color_scheme = COLOR_SCHEME_CUSTOM;
     
     return config;
 }
